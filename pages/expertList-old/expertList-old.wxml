@@ -1,0 +1,13 @@
+<!--logs.wxml-->
+    <view class="el-wrap">
+      <view class="el-item" wx:for="{{courseList}}" wx:for-index="index" data-id="{{item.id}}" wx:for-item="item" bindtap="goExpertDetail" wx:key="index">
+        <view class="el-item-l">
+          <image src="{{item.elImgs}}"/>
+        </view>
+        <view class="el-item-r" wx:for="{{item.elTxts}}" wx:for-index="index" wx:for-item="txt" wx:key="index">
+          <view class="teacherName" >本期讲师：{{txt.teacherName}}</view>
+          <view class="courseName" >{{txt.courseName}}</view>
+          <view class="publicTime" >{{txt.time}}</view>
+        </view>
+      </view>
+    </view>

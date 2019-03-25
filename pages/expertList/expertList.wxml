@@ -1,0 +1,35 @@
+<view class="el-wrap">
+  <!-- 1 -->
+  <view class='el-item' wx:for="{{expertList}}" wx:for-index="index" wx:key="index" data-id="{{item.id}}" bindtap="goExpertCourse">
+    <view class='item-t'>
+      <view class='item-t-l'>
+        <view class='nick-wrap'>
+          <image src='{{item.nickPic ? item.nickPic : "../../images/defaultNick.png"}}'></image>
+          <text class='name'>{{item.expertName}}</text>
+        </view>
+        <view class='txts'>
+          <text class='txts-item'>{{item.courseName}}</text>
+          <text class='txts-item'>{{item.courseTxt}}</text>
+        </view>
+      </view>
+      <view class='border-line'></view>
+      <view class='item-t-r'>
+        <view>
+          <image src='{{item.coursePic ? item.coursePic : "../../images/defaultPic.png"}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class='item-b'>
+      <view>
+        <image src='../../images/calendar.png'></image>
+        <text class='time-l'>播出时间</text>
+        <text class='time-r'>{{item.startTime}}</text>    
+      </view>
+    </view>
+    <view class='collection' catchtap="changePic">
+          <image class='col-icon' wx:if="{{collected}}" src='../../images/collection2.png'></image>
+          <image class='col-icon' wx:else src='../../images/collection1.png'></image>
+        </view>
+  </view>
+  
+</view>

@@ -1,0 +1,98 @@
+<!--pages/courseDetail/courseDetail.wxml-->
+<view class="cd-container">
+    <view class='cd-wrap'>
+      <live-player id="player" src="rtmp://47.105.153.172:1935/live/stream" mode="live" autoplay bindstatechange="statechange" binderror="error">
+        <!-- 播放按钮 -->
+        <cover-view class='cd-playBg'>
+          <cover-image src='{{cdPlayImg}}' class='cd-play' bindtap="bindPlay" id='cdPlayImg' wx:if='{{!flag}}'></cover-image>
+          <cover-image src='{{cdPauseImg}}' class='cd-pause' bindtap="bindPause" id='cdPauseImg' wx:else></cover-image>
+        </cover-view>
+      </live-player>
+    </view>
+    <!-- <view class="btn-area">
+      <button  class="page-body-button" type="primary">播放</button>
+      <button bindtap="bindPause" class="page-body-button" type="primary">暂停</button>
+      <button bindtap="bindStop" class="page-body-button" type="primary">停止</button>
+      <button bindtap="bindResume" class="page-body-button" type="primary">恢复</button>
+      <button bindtap="bindMute" class="page-body-button" type="primary">静音</button>
+    </view> -->
+    <view class='cd-liveWrap'>
+      <view class='cd-liveTxt'>直播时间</view>
+      <view class='cd-liveTime'>2019-03-12</view>
+    </view>
+
+    <!-- <button class='button' bindtap='buttonTap' type='primary'>显示弹窗</button>
+    <modal title="我是标题" hidden="{{modalHidden}}" bindconfirm="modalConfirm" bindcancel="modalCandel">
+        <view class='cd-liveWrap'>
+          <view class='cd-liveTxt'>重播计划</view>
+          <view class='cd-liveTime'>
+            <view class='cd-liveView'><view class='cd-liveItem'>日期</view><view class='cd-liveItem'>重播时间</view></view>
+            <view class='cd-liveView' wx:for="{{restartPlan}}" wx:key="{{index}}"><view class='cd-liveItem'>{{item.date}}</view><view class='cd-liveItem'>{{item.time}}</view></view>
+          </view>
+        </view>
+      </modal> -->
+
+    <view class='cd-liveWrap' style='height:{{restartHeight}};'>
+      <view class='cd-liveTxtR' id='cd-liveTxt'>重播计划</view>
+      <image src='../../images/arrow-down.png' class='cd-arrowDown' data-id='cdDown' id='cdDown' wx:if="{{arrowShow==true}}" bindtap='changeRestartHeight'></image>
+      <image src='../../images/arrow-up.png' class='cd-arrowUp' data-id='cdUp' id='cdUp' wx:else bindtap='changeRestartHeight'></image>
+      <view class='cd-liveTimeR' id='cd-liveTime'>
+        <view class='cd-liveView'><view class='cd-liveItem'>日期</view><view class='cd-liveItem'>重播时间</view></view>
+        <view class='cd-liveView' wx:for="{{restartPlan}}" wx:key="{{index}}"><view class='cd-liveItem'>{{item.date}}</view><view class='cd-liveItem'>{{item.time}}</view></view>
+      </view>
+    </view>
+
+  </view>
+
+<view class='cd-liveTab'>
+  <view class='cd-tabHeader'>
+    <view  class="{{tab==0?'cd-tabItem cd-tabHover':'cd-tabItem'}}" bindtap='cdTabHeader' data-item='0'>专家介绍</view>
+    <view class="{{tab==1?'cd-tabItem cd-tabHover':'cd-tabItem'}}" bindtap='cdTabHeader' data-item='1'>课程介绍</view>
+  </view>
+  <view class='cd-tabLine' style='transform:{{tabLine}}'></view>
+  
+  <view class='cd-tabContent' id='cd-tabContent' style='transform:{{tabContent}}; height:{{tabHeight}}px' >
+  <!-- 专家介绍 -->
+    <view class='cd-tabExpirse' id='cd-tabExpirse'>
+      <view class="cd-tabExpertItem">
+            <view class="cd-tabExpressImg"><image src="../../images/cd-lession.jpg"></image> </view>
+            <view class="cd-tabExpressTxt">
+              <view class="cd-tabExpressName">韩博</view>
+              <view class="cd-tabExpressExplain">“汉邦智慧，智慧生活”是我们秉承的理念，弘扬传统文化，树立科学的健康生活理念是我们努力的目标。
+汉邦智慧生活频道由天池沙龙与汉邦智慧紧密合作，秉承科学健康的生活理念，提供中国顶尖的行业专家的视频讲堂服务。智慧生活频道服务范围包括健康保障、中医养生、食品安全等，抛弃商业利益参与的弊病，围绕建立每一个人的智慧生活为核心，提供全方位的顶级服务。
+天池沙龙是高端服务平台，其专家组均为各行业的顶级专家，代表了最先进的健康生活理念，每位专家每年推出十二期讲座，针对健康生活的热点话题形成系列化的知识服务体系。
+视频讲堂将在今年四月份陆续开播，每期讲堂将在播出期间进行抽奖活动，每个月将在所有会员内进行抽奖，以感谢大家对我们的支持。</view>
+            </view>
+       </view>
+
+       <view class="cd-tabExpertItem">
+            <view class="cd-tabExpressImg"><image src="../../images/cd-lession.jpg"></image> </view>
+            <view class="cd-tabExpressTxt">
+              <view class="cd-tabExpressName">韩博</view>
+              <view class="cd-tabExpressExplain">“汉邦智慧，智慧生活”是我们秉承的理念，弘扬传统文化，树立科学的健康生活理念是我们努力的目标。
+汉邦智慧生活频道由天池沙龙与汉邦智慧紧密合作，秉承科学健康的生活理念，提供中国顶尖的行业专家的视频讲堂服务。智慧生活频道服务范围包括健康保障、中医养生、食品安全等，抛弃商业利益参与的弊病，围绕建立每一个人的智慧生活为核心，提供全方位的顶级服务。
+天池沙龙是高端服务平台，其专家组均为各行业的顶级专家，代表了最先进的健康生活理念，每位专家每年推出十二期讲座，针对健康生活的热点话题形成系列化的知识服务体系。
+视频讲堂将在今年四月份陆续开播，每期讲堂将在播出期间进行抽奖活动，每个月将在所有会员内进行抽奖，以感谢大家对我们的支持。</view>
+            </view>
+       </view>
+
+       <view class="cd-tabExpertItem">
+            <view class="cd-tabExpressImg"><image src="../../images/cd-lession.jpg"></image> </view>
+            <view class="cd-tabExpressTxt">
+              <view class="cd-tabExpressName">韩博</view>
+              <view class="cd-tabExpressExplain">“汉邦智慧，智慧生活”是我们秉承的理念，弘扬传统文化，树立科学的健康生活理念是我们努力的目标。
+汉邦智慧生活频道由天池沙龙与汉邦智慧紧密合作，秉承科学健康的生活理念，提供中国顶尖的行业专家的视频讲堂服务。智慧生活频道服务范围包括健康保障、中医养生、食品安全等，抛弃商业利益参与的弊病，围绕建立每一个人的智慧生活为核心，提供全方位的顶级服务。
+天池沙龙是高端服务平台，其专家组均为各行业的顶级专家，代表了最先进的健康生活理念，每位专家每年推出十二期讲座，针对健康生活的热点话题形成系列化的知识服务体系。
+视频讲堂将在今年四月份陆续开播，每期讲堂将在播出期间进行抽奖活动，每个月将在所有会员内进行抽奖，以感谢大家对我们的支持。</view>
+            </view>
+       </view>
+    </view>
+  <!-- 课程介绍 -->
+    <view class='cd-tabCourse' id='cd-tabCourse'>
+    “汉邦智慧，智慧生活”是我们秉承的理念，弘扬传统文化，树立科学的健康生活理念是我们努力的目标。
+          汉邦智慧生活频道由天池沙龙与汉邦智慧紧密合作，秉承科学健康的生活理念，提供中国顶尖的行业专家的视频讲堂服务。智慧生活频道服务范围包括健康保障、中医养生、食品安全等，抛弃商业利益参与的弊病，围绕建立每一个人的智慧生活为核心，提供全方位的顶级服务。
+          天池沙龙是高端服务平台，其专家组均为各行业的顶级专家，代表了最先进的健康生活理念，每位专家每年推出十二期讲座，针对健康生活的热点话题形成系列化的知识服务体系。
+          视频讲堂将在今年四月份陆续开播，每期讲堂将在播出期间进行抽奖活动，每个月将在所有会员内进行抽奖，以感谢大家对我们的支持。
+    </view>
+  </view>
+</view>

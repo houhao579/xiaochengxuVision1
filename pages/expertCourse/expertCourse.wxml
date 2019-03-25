@@ -1,0 +1,15 @@
+<!--logs.wxml-->
+<image class='cl-bg' src='../../images/courBgTop33.png'></image>
+    <view class="cl-wrap">
+      <view class="cl-item" wx:for="{{courseList}}" wx:for-index="index" data-id="{{item.id}}" wx:for-item="item" bindtap="goCourseDetail" wx:key="index">
+        <view class="cl-item-l">
+          <image src="{{item.clImgs}}"/>
+        </view>
+        <view class="cl-item-r" wx:for="{{item.clTxts}}" wx:for-index="index" wx:for-item="txt" wx:key="index">
+          <view class="courseName" >{{txt.courseName}}</view>
+          <view class="teacherName" >本期讲师：{{txt.teacherName}}</view>
+          <view class="publicTime" >{{txt.time}}</view>
+        </view>
+        <view class="cl-item-arrow"><image src='../../images/arrow-right.png'></image></view>
+      </view>
+    </view>
